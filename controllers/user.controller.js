@@ -30,8 +30,6 @@ exports.findOne = async(req, res) => {
 exports.create = async(req, res) => {
     console.log("Insert User")
 
-    console.log(req.body)
-
     const newUser = new User({
         username: req.body.username,
         password: req.body.password,
@@ -84,7 +82,7 @@ exports.delete = async(req, res) => {
     console.log("Delete user: ", username);
 
     try {
-        const result = await User.findOneAndDelete({username})
+        const result = await User.findOneAndDelete({username: username})
         res.status(200).json({data: result});
         console.log("Success in deleting user", username);
     } catch(err) {
